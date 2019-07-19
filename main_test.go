@@ -44,43 +44,31 @@ func TestArticlePage(t *testing.T) {
 		if status := response.StatusCode; status != http.StatusOK && status != http.StatusCreated { 
 			t.Errorf("Received PUT request HTTP status code: %v, but expected %v or %v", status, http.StatusOK, http.StatusCreated);
 		}
-		
-		//DEBUG
-		/*
-		hdr := response.Header
-		for key, value := range hdr {
-			fmt.Println("   ", key, ":", value)
-		}
-		fmt.Println(contents)
-		*/
 	}
 	
-	//Simulate basic GET request to main articles page to ensure proper status response
+	//GET request to main articles page to ensure proper status response
 	request, err = http.NewRequest("GET", "http://127.0.0.1:9090/articles/", nil)
 	if err != nil {
 		t.Fatal(err)
 	}
-	
-	//TODO copy the .do format to hit existing service
 
 	handler := http.HandlerFunc(ArticlePage)
 	handler.ServeHTTP(recorder, request)
 	
 	if status := recorder.Code; status != http.StatusOK {
-		t.Errorf("Wrong Initial GET HTTP status code: Received %v expected %v", status, http.StatusOK)
+		t.Errorf("Articles Main: Wrong Initial GET HTTP status code: Received %v expected %v", status, http.StatusOK)
 	}
 	
-	//mainArticlesBody := recorder.Body.String()
-	
-	//t.Errorf("mainArticlesBody: %v", mainArticlesBody);
-	
+	//GET Request on individual article page to ensure proper status response
 	//Request to be passed to the handler
 	request, err = http.NewRequest("GET", "/articles/testarticle", nil)
 	if err != nil {
 		t.Fatal(err)
 	}
 	
-	//if ...
-	//t.Errorf("Handler received unexpected body string: %s", receivedBodyString)
+	if status := recorder.Code; status != http.StatusOK {
+		t.Errorf("Article Individual: Wrong Initial GET HTTP status code: Received %v expected %v", status, http.StatusOK)
+	}
+	
 }
 
