@@ -3,7 +3,7 @@
 
 ## Build Setup
 
-Download this code to any desired directory.
+Download this code to any directory.
 In a terminal, navigate to the selected directory.
 
 ``` bash
@@ -20,7 +20,7 @@ go run main.go
 
 ``` bash
 
-# once server is running, another terminal may run tests
+# when the server is running, tests may be run using
 go test
 
 ```
@@ -29,12 +29,18 @@ go test
 
 The server will be running on localhost:9090.
 
-URLs being served are: 
-> GET localhost:9090/articles - get all article titles as a JSON array
-> GET localhost:9090/articles/(name) - get an article as a JSON object
-> PUT localhost:9090/articles/(name) - add/edit an article
+The functionality being served is as follows:
 
-Using [Curl](https://github.com/curl/curl) add/edit queries can be made to the API via the following command:
+Get all article titles as a JSON array
+- GET localhost:9090/articles 
+	
+Get an article as a JSON object
+- GET localhost:9090/articles/(name) 
+
+Add/Update an article
+- PUT localhost:9090/articles/(name)
+
+Using [Curl](https://github.com/curl/curl) add/update queries can be made to the API via the following command:
 
 ``` bash
 
