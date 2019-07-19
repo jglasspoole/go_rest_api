@@ -22,10 +22,6 @@ type ArticleTitlesJSON struct {
 
 var articleDataMap = make(ArticleMap)
 
-func HomePage(writer http.ResponseWriter, request *http.Request) {
-	fmt.Fprintf(writer, "Homepage Endpoint")
-}
-
 func ArticlePage(writer http.ResponseWriter, request *http.Request) {
 
 	articleNameParam := ""
@@ -137,7 +133,7 @@ func ArticlePage(writer http.ResponseWriter, request *http.Request) {
 }
 
 func HandleRequests() {
-	http.HandleFunc("/", HomePage)
+	http.HandleFunc("/", ArticlePage)
 	http.HandleFunc("/articles", ArticlePage) //avoid redirect on no slash
 	http.HandleFunc("/articles/", ArticlePage)
 	log.Fatal(http.ListenAndServe(":9090", nil))
